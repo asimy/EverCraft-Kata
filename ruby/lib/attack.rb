@@ -9,7 +9,7 @@ class Attack
   end
 
   def critical_damage
-    2 * @attacker.strength_modifier
+    @attacker.critical_damage_multiplier * normal_damage
   end
 
   def normal_damage

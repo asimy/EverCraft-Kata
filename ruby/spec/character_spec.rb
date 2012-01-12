@@ -99,7 +99,6 @@ describe Character do
     end
   end
 
-
   describe "defending against an attack" do
     Given(:defender) {
       Character.new("Me") do |c|

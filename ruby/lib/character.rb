@@ -77,7 +77,7 @@ class Character
 
   def attacked_by(attack)
     if attack.critical?
-      take_damage(2 + attack.critical_damage)
+      take_damage(attack.critical_damage)
       attack.was_successful
     elsif successful?(attack.attack_value)
       take_damage(attack.normal_damage)
@@ -89,8 +89,8 @@ class Character
     hit_points < 1
   end
 
-  def strength_modifier
-    (@strength.to_i - 10) / 2
+  def critical_damage_multiplier
+    @class_strategy.critical_damage_multiplier
   end
 
   def had_a_successful_attack
@@ -98,7 +98,7 @@ class Character
   end
 
   def attack_bonus
-    strength_modifier + level_bonus
+    @class_strategy.attack_bonus + level_bonus
   end
 
   private
