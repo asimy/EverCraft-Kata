@@ -79,7 +79,7 @@ class Character
     if attack.critical?
       take_damage(attack.critical_damage)
       attack.was_successful
-    elsif successful?(attack.attack_value)
+    elsif successful?(attack)
       take_damage(attack.normal_damage)
       attack.was_successful
     end
@@ -112,8 +112,8 @@ class Character
     @total_damage += damage
   end
 
-  def successful?(die_value)
-    die_value >= armor_class
+  def successful?(attack)
+    attack.attack_value >= armor_class
   end
 
   def basic_health
