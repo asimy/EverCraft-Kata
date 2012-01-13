@@ -18,4 +18,8 @@ class StandardClass
   def attack_bonus
     @character.strength_modifier
   end
+
+  def choose_defenders_armor(base_armor, normal_armor)
+    normal_armor
+  end
 end

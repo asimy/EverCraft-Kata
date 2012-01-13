@@ -23,4 +23,8 @@ class Attack
   def was_successful
     @attacker.had_a_successful_attack
   end
+
+  def choose_defenders_armor(basic_armor, normal_armor)
+    @attacker.choose_defenders_armor(basic_armor, normal_armor)
+  end
 end

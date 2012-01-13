@@ -94,6 +94,10 @@ class Character
     @class_strategy.attack_bonus + level_bonus
   end
 
+  def choose_defenders_armor(base_armor, normal_armor)
+    @class_strategy.choose_defenders_armor(base_armor, normal_armor)
+  end
+
   private
 
   def level_bonus
@@ -105,7 +109,8 @@ class Character
   end
 
   def successful?(attack)
-    attack.attack_value >= armor_class
+    ac = attack.choose_defenders_armor(@base_armor_class, armor_class)
+    attack.attack_value >= ac
   end
 
   def basic_health
