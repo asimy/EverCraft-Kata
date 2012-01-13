@@ -1,5 +1,6 @@
 require 'attack'
 require 'standard_class'
+require 'integer_extensions'
 
 class Character
   attr_accessor :name
@@ -100,8 +101,7 @@ class Character
   end
 
   def take_damage(damage)
-    damage = 1 if damage <= 0
-    @total_damage += damage
+    @total_damage += damage.but_at_least(1)
   end
 
   def successful?(attack)
@@ -109,7 +109,7 @@ class Character
   end
 
   def basic_health
-    [1, base_hit_points + constitution_modifier].max
+    (base_hit_points + constitution_modifier).but_at_least(1)
   end
 
   def base_hit_points
