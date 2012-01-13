@@ -109,9 +109,7 @@ class Character
   end
 
   def basic_health
-    result = base_hit_points + constitution_modifier
-    result = 1 if result < 1
-    result
+    [1, base_hit_points + constitution_modifier].max
   end
 
   def base_hit_points
