@@ -4,7 +4,6 @@ require 'standard_class'
 class Character
   attr_accessor :name
   attr_reader :alignment, :experience
-  attr_reader :armor_class
 
   attr_writer :experience       # TODO: Remove the need for this
 
@@ -20,9 +19,7 @@ class Character
 
   ability :strength, :dexterity, :constitution, :wisdom, :intelligence, :charisma
 
-  VALID_ALIGNMENTS = [
-    :good, :neutral, :evil
-  ]
+  VALID_ALIGNMENTS = [ :good, :neutral, :evil ]
 
   def initialize(name, klass=StandardClass)
     @name = name
@@ -64,11 +61,6 @@ class Character
     raise ArgumentError, "Alignment (#{value}) must be :good, :neutral, or :evil" unless
       VALID_ALIGNMENTS.include?(value)
     @alignment = value
-  end
-
-  def attack_successful(roll)
-    return true if roll > self.armor_class-1
-    false
   end
 
   def attacking_with(die_value)
