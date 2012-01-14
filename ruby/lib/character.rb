@@ -1,5 +1,6 @@
 require 'attack'
 require 'standard_class'
+require 'human_race'
 require 'integer_extensions'
 
 class Character
@@ -35,8 +36,8 @@ class Character
     @alignment = :neutral
     klass = options.delete(:class) || StandardClass
     @class_strategy = klass.new(self)
-    # race = options.delete(:race) || HumanRace
-    # @race = race.new(self)
+    race = options.delete(:race) || HumanRace
+    @race = race.new(self)
     fail ArgumentError, "No block allowed on initializer" if block_given?
     options.each do |field, value|
       set(field, value)
