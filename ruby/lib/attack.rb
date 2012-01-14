@@ -4,16 +4,16 @@ class Attack
     @die_value = die_value
   end
 
-  def attack_value
-    @die_value + @attacker.attack_bonus
+  def attack_value(defender)
+    @die_value + @attacker.attack_bonus(defender)
   end
 
-  def critical_damage
-    @attacker.critical_damage_multiplier * normal_damage
+  def critical_damage(defender)
+    @attacker.critical_damage_multiplier * normal_damage(defender)
   end
 
-  def normal_damage
-    @attacker.base_damage + @attacker.strength_modifier
+  def normal_damage(defender)
+    @attacker.normal_damage_multiplier_for(defender) * (@attacker.base_damage + @attacker.strength_modifier)
   end
 
   def critical?

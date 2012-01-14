@@ -29,31 +29,31 @@ describe WarMonkClass do
     When(:attack) { character.attacking_with(10) }
 
     context "at level 1" do
-      Then { attack.attack_value.should == 10 }
+      Then { attack.attack_value(defender).should == 10 }
     end
     context "at level 2" do
       Given { character.set_level(2) }
-      Then { attack.attack_value.should == 11 }
+      Then { attack.attack_value(defender).should == 11 }
     end
     context "at level 3" do
       Given { character.set_level(3) }
-      Then { attack.attack_value.should == 12 }
+      Then { attack.attack_value(defender).should == 12 }
     end
     context "at level 4" do
       Given { character.set_level(4) }
-      Then { attack.attack_value.should == 12 }
+      Then { attack.attack_value(defender).should == 12 }
     end
     context "at level 5" do
       Given { character.set_level(5) }
-      Then { attack.attack_value.should == 13 }
+      Then { attack.attack_value(defender).should == 13 }
     end
     context "at level 6" do
       Given { character.set_level(6) }
-      Then { attack.attack_value.should == 14 }
+      Then { attack.attack_value(defender).should == 14 }
     end
     context "at level 7" do
       Given { character.set_level(7) }
-      Then { attack.attack_value.should == 14 }
+      Then { attack.attack_value(defender).should == 14 }
     end
   end
 end

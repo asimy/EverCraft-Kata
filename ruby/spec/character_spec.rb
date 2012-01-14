@@ -181,7 +181,7 @@ describe Character do
 
         describe "no increase attack value" do
           When(:attack) { character.attacking_with(10) }
-          Then { attack.attack_value.should == 10 }
+          Then { attack.attack_value(defender).should == 10 }
         end
       end
 
@@ -196,7 +196,7 @@ describe Character do
 
         describe "increase attack value" do
           When(:attack) { character.attacking_with(10) }
-          Then { attack.attack_value.should == 11 }
+          Then { attack.attack_value(defender).should == 11 }
         end
       end
 
@@ -239,10 +239,11 @@ describe Character do
   end
 
   describe "#attacking_with" do
+    Given(:defender) { Character.new("defender") }
     it "returns an an attack object" do
       attack = character.attacking_with(10)
-      attack.attack_value.should == 10
-      attack.normal_damage.should == 1
+      attack.attack_value(defender).should == 10
+      attack.normal_damage(defender).should == 1
     end
   end
 end

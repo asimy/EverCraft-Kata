@@ -3,7 +3,7 @@ class RogueClass < StandardClass
     3
   end
 
-  def attack_bonus
+  def attack_bonus(defender)
     @character.dexterity_modifier
   end
 

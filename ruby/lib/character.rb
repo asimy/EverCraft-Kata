@@ -70,10 +70,10 @@ class Character
 
   def attacked_by(attack)
     if attack.critical?
-      take_damage(attack.critical_damage)
+      take_damage(attack.critical_damage(self))
       attack.was_successful
     elsif successful?(attack)
-      take_damage(attack.normal_damage)
+      take_damage(attack.normal_damage(self))
       attack.was_successful
     end
   end
@@ -90,12 +90,16 @@ class Character
     @class_strategy.critical_damage_multiplier
   end
 
+  def normal_damage_multiplier_for(defender)
+    @class_strategy.normal_damage_multiplier_for(defender)
+  end
+
   def had_a_successful_attack
     @experience += 10
   end
 
-  def attack_bonus
-    @class_strategy.attack_bonus + level_bonus
+  def attack_bonus(defender)
+    @class_strategy.attack_bonus(defender) + level_bonus
   end
 
   def choose_defenders_armor(base_armor, normal_armor)
@@ -114,7 +118,7 @@ class Character
 
   def successful?(attack)
     ac = attack.choose_defenders_armor(@base_armor_class, armor_class)
-    attack.attack_value >= ac
+    attack.attack_value(self) >= ac
   end
 
   def basic_health

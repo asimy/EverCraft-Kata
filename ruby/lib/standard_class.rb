@@ -11,11 +11,15 @@ class StandardClass
     5
   end
 
+  def normal_damage_multiplier_for(defender)
+    1
+  end
+
   def critical_damage_multiplier
     2
   end
 
-  def attack_bonus
+  def attack_bonus(defender)
     @character.strength_modifier
   end
 
