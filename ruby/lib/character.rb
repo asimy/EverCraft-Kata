@@ -6,8 +6,6 @@ class Character
   attr_accessor :name
   attr_reader :alignment, :experience
 
-  attr_writer :experience       # TODO: Remove the need for this
-
   def self.ability(*names)
     names.each do |name|
       attr_accessor name
@@ -22,7 +20,7 @@ class Character
 
   VALID_ALIGNMENTS = [ :good, :neutral, :evil ]
 
-  def initialize(name, klass=StandardClass)
+  def initialize(name, options={})
     @name = name
     @base_armor_class = 10
     @total_damage = 0
@@ -33,9 +31,26 @@ class Character
     @intelligence = 10
     @charisma = 10
     @experience = 0
-    @class_strategy = klass.new(self)
+    @class_strategy = :unspecified
     @alignment = :neutral
-    yield(self) if block_given?
+    strat = options.delete(:class_strategy) || StandardClass
+    @class_strategy = strat.new(self)
+    fail ArgumentError, "No block allowed on initializer" if block_given?
+    options.each do |field, value|
+      set(field, value)
+    end
+  end
+
+  def set(field, value)
+    if field == :level
+      set_level(value)
+    elsif respond_to?("#{field}=")
+      send("#{field}=", value)
+    elsif ! instance_variable_get("@#{field}").nil?
+      instance_variable_set("@#{field}", value)
+    else
+      fail ArgumentError, "Unknown field '#{field}'"
+    end
   end
 
   def level

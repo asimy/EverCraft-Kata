@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe FighterClass do
-  Given(:character) { Character.new("Me", FighterClass)}
+  Given(:character) { Character.new("Me", class_strategy: FighterClass)}
   Given(:defender) { Character.new("Them") }
 
   it "gets an attack bonus at level 2" do

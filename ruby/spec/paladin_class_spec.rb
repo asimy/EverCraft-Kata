@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PaladinClass do
-  Given(:character) { Character.new("Pally", PaladinClass) }
+  Given(:character) { Character.new("Pally", class_strategy: PaladinClass) }
   Given(:defender) { Character.new("Defender") }
 
   describe "has 8 hit points per level instead of 5" do
@@ -25,11 +25,7 @@ describe PaladinClass do
     end
 
     context "when attacking a bad guy" do
-      Given(:defender) {
-        Character.new("Bad Guy") do |c|
-          c.alignment = :evil
-        end
-      }
+      Given(:defender) { Character.new("Bad Guy", alignment: :evil) }
       When(:attack) { Attack.new(character, defender, 10) }
       Then { attack.attack_value.should == 12 }
       Then { attack.normal_damage.should == base_damage + 2 }

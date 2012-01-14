@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RogueClass do
-  Given(:character) { Character.new("Me", RogueClass) }
+  Given(:character) { Character.new("Me", class_strategy: RogueClass) }
   Given(:defender) { Character.new("Them") }
 
   describe "critical damage" do
@@ -15,11 +15,7 @@ describe RogueClass do
   end
 
   describe "ignore dexterity of defender" do
-    Given(:defender) {
-      Character.new("Defender") do |c|
-        c.dexterity = 12
-      end
-    }
+    Given(:defender) { Character.new("Defender", dexterity: 12) }
     When { character.attacks(defender, 10) }
     Then { character.experience.should == 10 }
   end
