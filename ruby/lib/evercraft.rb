@@ -17,4 +17,4 @@ require 'elf_race'
 require 'halfling_race'
 
 require 'bare_hands'
-require 'longsword'
+require 'long_sword'
