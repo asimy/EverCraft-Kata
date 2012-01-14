@@ -1,4 +1,4 @@
-class ElfRace < HumanRace
+class ElfRace < StandardRace
   def racial_name
     :elf
   end

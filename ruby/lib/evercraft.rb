@@ -9,6 +9,7 @@ require 'rogue_class'
 require 'war_monk_class'
 require 'paladin_class'
 
+require 'standard_race'
 require 'human_race'
 require 'orc_race'
 require 'dwarf_race'

@@ -1,4 +1,4 @@
-class DwarfRace < HumanRace
+class DwarfRace < StandardRace
   def racial_name
     :dwarf
   end
