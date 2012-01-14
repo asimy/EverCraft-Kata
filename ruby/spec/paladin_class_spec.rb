@@ -19,9 +19,9 @@ describe PaladinClass do
     context "when attacking a good guy" do
       Given(:defender) { Character.new("Good Guy") }
       When(:attack) { character.attacking_with(defender, 10) }
-      Then { attack.attack_value(defender).should == 10 }
-      Then { attack.normal_damage(defender).should == base_damage }
-      Then { attack.critical_damage(defender).should == 2 * base_damage }
+      Then { attack.attack_value.should == 10 }
+      Then { attack.normal_damage.should == base_damage }
+      Then { attack.critical_damage.should == 2 * base_damage }
     end
 
     context "when attacking a bad guy" do
@@ -31,9 +31,9 @@ describe PaladinClass do
         end
       }
       When(:attack) { character.attacking_with(defender, 10) }
-      Then { attack.attack_value(defender).should == 12 }
-      Then { attack.normal_damage(defender).should == base_damage + 2 }
-      Then { attack.critical_damage(defender).should == 3 * (base_damage + 2) }
+      Then { attack.attack_value.should == 12 }
+      Then { attack.normal_damage.should == base_damage + 2 }
+      Then { attack.critical_damage.should == 3 * (base_damage + 2) }
     end
   end
 
@@ -41,19 +41,19 @@ describe PaladinClass do
     When(:attack) { character.attacking_with(defender, 10) }
 
     context "at level 1" do
-      Then { attack.attack_value(defender).should == 10 }
+      Then { attack.attack_value.should == 10 }
     end
     context "at level 2" do
       Given { character.set_level(2) }
-      Then { attack.attack_value(defender).should == 11 }
+      Then { attack.attack_value.should == 11 }
     end
     context "at level 3" do
       Given { character.set_level(3) }
-      Then { attack.attack_value(defender).should == 12 }
+      Then { attack.attack_value.should == 12 }
     end
     context "at level 4" do
       Given { character.set_level(4) }
-      Then { attack.attack_value(defender).should == 13 }
+      Then { attack.attack_value.should == 13 }
     end
   end
 end

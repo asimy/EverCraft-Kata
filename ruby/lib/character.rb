@@ -68,12 +68,13 @@ class Character
     Attack.new(self, defender, die_value)
   end
 
+  # TODO: Move to attack?
   def attacked_by(attack)
     if attack.critical?
-      take_damage(attack.critical_damage(self))
+      take_damage(attack.critical_damage)
       attack.was_successful
     elsif successful?(attack)
-      take_damage(attack.normal_damage(self))
+      take_damage(attack.normal_damage)
       attack.was_successful
     end
   end
@@ -116,9 +117,10 @@ class Character
     @total_damage += damage.but_at_least(1)
   end
 
+  # TODO: Should this be here?
   def successful?(attack)
     ac = attack.choose_defenders_armor(@base_armor_class, armor_class)
-    attack.attack_value(self) >= ac
+    attack.attack_value >= ac
   end
 
   def basic_health

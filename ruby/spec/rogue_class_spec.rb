@@ -6,7 +6,7 @@ describe RogueClass do
 
   describe "critical damage" do
     Given(:attack) { character.attacking_with(defender, 20) }
-    Then { attack.critical_damage(defender).should == 3 }
+    Then { attack.critical_damage.should == 3 }
   end
 
   describe "dexterity based attack" do
