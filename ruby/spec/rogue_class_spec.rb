@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RogueClass do
-  Given(:character) { Character.new("Me", class_strategy: RogueClass) }
+  Given(:character) { Character.new("Me", class: RogueClass) }
   Given(:defender) { Character.new("Them") }
 
   describe "critical damage" do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PaladinClass do
-  Given(:character) { Character.new("Pally", class_strategy: PaladinClass) }
+  Given(:character) { Character.new("Pally", class: PaladinClass) }
   Given(:defender) { Character.new("Defender") }
 
   describe "has 8 hit points per level instead of 5" do

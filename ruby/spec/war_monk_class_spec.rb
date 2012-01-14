@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe WarMonkClass do
   Given(:original_hits) { 5 }
-  Given(:character) { Character.new("Monk", class_strategy: WarMonkClass) }
+  Given(:character) { Character.new("Monk", class: WarMonkClass) }
   Given(:defender) { Character.new("Defender") }
 
   describe "has 6 hit points per level" do

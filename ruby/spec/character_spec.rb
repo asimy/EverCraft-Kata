@@ -141,7 +141,7 @@ describe Character do
     end
 
     context "on class strategy" do
-      Given(:character) { Character.new("Me", :class_strategy => FighterClass) }
+      Given(:character) { Character.new("Me", class: FighterClass) }
       Given(:fighter_hit_points) { 10 }
       Then { character.hit_points.should == fighter_hit_points }
     end

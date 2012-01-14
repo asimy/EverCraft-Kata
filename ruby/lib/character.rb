@@ -33,8 +33,10 @@ class Character
     @experience = 0
     @class_strategy = :unspecified
     @alignment = :neutral
-    strat = options.delete(:class_strategy) || StandardClass
-    @class_strategy = strat.new(self)
+    klass = options.delete(:class) || StandardClass
+    @class_strategy = klass.new(self)
+    # race = options.delete(:race) || HumanRace
+    # @race = race.new(self)
     fail ArgumentError, "No block allowed on initializer" if block_given?
     options.each do |field, value|
       set(field, value)
