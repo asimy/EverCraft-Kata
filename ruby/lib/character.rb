@@ -12,7 +12,7 @@ class Character
       attr_accessor name
       define_method("#{name}_modifier") do
         value = send(name)
-        ((value - 10) / 2) + @race.modifier_for(name)
+        ((value - 10) / 2) + @race.modifier_bonus_for(name)
       end
     end
   end

@@ -3,7 +3,7 @@ class HumanRace
     @character = character
   end
 
-  def modifier_for(ability)
+  def modifier_bonus_for(ability)
     0
   end
 

@@ -5,7 +5,7 @@ class OrcRace < HumanRace
     2
   end
 
-  def modifier_for(ability)
+  def modifier_bonus_for(ability)
     ABILITY_MODS[ability] || super
   end
 end
