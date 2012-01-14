@@ -33,6 +33,7 @@ class Character
     @charisma = 10
     @experience = 0
     @alignment = :neutral
+    @weapon = BARE_HANDS
     klass = options.delete(:class) || StandardClass
     @class = klass.new(self)
     race = options.delete(:race) || HumanRace
@@ -51,6 +52,10 @@ class Character
 
   def set_level(level)
     @experience = (level-1) * 1000
+  end
+
+  def wields(weapon)
+    @weapon = weapon
   end
 
   def base_armor_class
@@ -80,7 +85,7 @@ class Character
   end
 
   def base_damage(defender)
-    @class.base_damage(defender) + @race.damage_bonus(defender)
+    @class.base_damage(defender) + @race.damage_bonus(defender) + @weapon.base_damage(defender)
   end
 
   def dead?
@@ -108,7 +113,9 @@ class Character
   end
 
   def attack_bonus(defender)
-    level_bonus + @class.attack_bonus(defender) + @race.attack_bonus(defender)
+    level_bonus +
+      @class.attack_bonus(defender) +
+      @race.attack_bonus(defender)
   end
 
   def choose_defenders_armor(base_armor, normal_armor)

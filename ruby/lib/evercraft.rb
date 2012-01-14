@@ -15,3 +15,6 @@ require 'orc_race'
 require 'dwarf_race'
 require 'elf_race'
 require 'halfling_race'
+
+require 'bare_hands'
+require 'longsword'
