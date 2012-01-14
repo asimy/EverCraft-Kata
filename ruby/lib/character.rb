@@ -54,7 +54,7 @@ class Character
   end
 
   def armor_class
-    @base_armor_class + @class_strategy.armor_bonus
+    @base_armor_class + @class_strategy.armor_bonus + @race.armor_bonus
   end
 
   def hit_points

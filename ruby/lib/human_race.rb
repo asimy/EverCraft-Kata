@@ -6,4 +6,8 @@ class HumanRace
   def modifier_for(ability)
     0
   end
+
+  def armor_bonus
+    0
+  end
 end
