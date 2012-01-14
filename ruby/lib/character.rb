@@ -34,7 +34,7 @@ class Character
     @experience = 0
     @alignment = :neutral
     klass = options.delete(:class) || StandardClass
-    @class_strategy = klass.new(self)
+    @class = klass.new(self)
     race = options.delete(:race) || HumanRace
     @race = race.new(self)
     fail ArgumentError, "No block allowed on initializer" if block_given?
@@ -58,7 +58,7 @@ class Character
   end
 
   def armor_class
-    @base_armor_class + @class_strategy.armor_bonus + @race.armor_bonus
+    @base_armor_class + @class.armor_bonus + @race.armor_bonus
   end
 
   def hit_points
@@ -80,7 +80,7 @@ class Character
   end
 
   def base_damage(defender)
-    @class_strategy.base_damage(defender) + @race.damage_bonus(defender)
+    @class.base_damage(defender) + @race.damage_bonus(defender)
   end
 
   def dead?
@@ -88,11 +88,11 @@ class Character
   end
 
   def critical_damage_multiplier(defender)
-    @class_strategy.critical_damage_multiplier(defender)
+    @class.critical_damage_multiplier(defender)
   end
 
   def normal_damage_multiplier_for(defender)
-    @class_strategy.normal_damage_multiplier_for(defender)
+    @class.normal_damage_multiplier_for(defender)
   end
 
   def take_damage(damage)
@@ -104,11 +104,11 @@ class Character
   end
 
   def attack_bonus(defender)
-    level_bonus + @class_strategy.attack_bonus(defender) + @race.attack_bonus(defender)
+    level_bonus + @class.attack_bonus(defender) + @race.attack_bonus(defender)
   end
 
   def choose_defenders_armor(base_armor, normal_armor)
-    @class_strategy.choose_defenders_armor(base_armor, normal_armor)
+    @class.choose_defenders_armor(base_armor, normal_armor)
   end
 
   private
@@ -132,7 +132,7 @@ class Character
   end
 
   def level_bonus
-    @class_strategy.level_bonus
+    @class.level_bonus
   end
 
   def basic_health
@@ -140,6 +140,6 @@ class Character
   end
 
   def base_hit_points
-    level * @class_strategy.hits_per_level
+    level * @class.hits_per_level
   end
 end
