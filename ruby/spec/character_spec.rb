@@ -7,6 +7,10 @@ describe Character do
     Then { character.name.should == "Brian the Barbarian" }
   end
 
+  describe "its race" do
+    Then { character.race.should == :human }
+  end
+
   describe "default values" do
     Then { character.experience.should == 0 }
     Then { character.level.should == 1 }

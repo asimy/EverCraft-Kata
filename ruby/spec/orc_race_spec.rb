@@ -6,6 +6,8 @@ describe OrcRace do
   Given(:base_modifier) { 0 }
   Given(:base_armor_class) { 10 }
 
+  Then { character.race.should == :orc }
+
   Then { character.strength_modifier.should == base_modifier + 2 }
   Then { character.intelligence_modifier.should == base_modifier - 1 }
   Then { character.wisdom_modifier.should == base_modifier - 1 }

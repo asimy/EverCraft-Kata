@@ -11,3 +11,4 @@ require 'paladin_class'
 
 require 'human_race'
 require 'orc_race'
+require 'dwarf_race'
