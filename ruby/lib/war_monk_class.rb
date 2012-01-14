@@ -3,7 +3,7 @@ class WarMonkClass < StandardClass
     6
   end
 
-  def base_damage
+  def base_damage(defender)
     3
   end
 

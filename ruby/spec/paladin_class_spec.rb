@@ -14,13 +14,14 @@ describe PaladinClass do
     end
   end
 
-  describe "+2 to attack and damage when attacking evil characters" do
+  describe "+2 to attack and damage (3x on crit) on evil dudes" do
+    Given(:base_damage) { 1 }
     context "when attacking a good guy" do
       Given(:defender) { Character.new("Good Guy") }
       When(:attack) { character.attacking_with(10) }
       Then { attack.attack_value(defender).should == 10 }
-      Then { attack.normal_damage(defender).should == 1 }
-      Then { attack.critical_damage(defender).should == 2 }
+      Then { attack.normal_damage(defender).should == base_damage }
+      Then { attack.critical_damage(defender).should == 2 * base_damage }
     end
 
     context "when attacking a bad guy" do
@@ -31,8 +32,8 @@ describe PaladinClass do
       }
       When(:attack) { character.attacking_with(10) }
       Then { attack.attack_value(defender).should == 12 }
-      Then { attack.normal_damage(defender).should == 3 }
-      Then { attack.critical_damage(defender).should == 6 }
+      Then { attack.normal_damage(defender).should == base_damage + 2 }
+      Then { attack.critical_damage(defender).should == 3 * (base_damage + 2) }
     end
   end
 

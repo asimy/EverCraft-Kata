@@ -9,8 +9,12 @@ class PaladinClass < StandardClass
     @character.strength_modifier + ((defender.alignment == :evil) ? 2 : 0)
   end
 
-  def normal_damage_multiplier_for(defender)
-    (defender.alignment == :evil) ? 3 : 1
+  def base_damage(defender)
+    (defender.alignment == :evil) ? super + 2 : super
+  end
+
+  def critical_damage_multiplier(defender)
+    (defender.alignment == :evil) ? 3 : super
   end
 
   def level_bonus

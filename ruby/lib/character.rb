@@ -78,16 +78,16 @@ class Character
     end
   end
 
-  def base_damage
-    @class_strategy.base_damage
+  def base_damage(defender)
+    @class_strategy.base_damage(defender)
   end
 
   def dead?
     hit_points < 1
   end
 
-  def critical_damage_multiplier
-    @class_strategy.critical_damage_multiplier
+  def critical_damage_multiplier(defender)
+    @class_strategy.critical_damage_multiplier(defender)
   end
 
   def normal_damage_multiplier_for(defender)

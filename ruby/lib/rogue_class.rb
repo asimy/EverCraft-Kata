@@ -1,5 +1,5 @@
 class RogueClass < StandardClass
-  def critical_damage_multiplier
+  def critical_damage_multiplier(defender)
     3
   end
 

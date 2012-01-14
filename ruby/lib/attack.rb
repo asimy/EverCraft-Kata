@@ -9,11 +9,11 @@ class Attack
   end
 
   def critical_damage(defender)
-    @attacker.critical_damage_multiplier * normal_damage(defender)
+    @attacker.critical_damage_multiplier(defender) * normal_damage(defender)
   end
 
   def normal_damage(defender)
-    @attacker.normal_damage_multiplier_for(defender) * (@attacker.base_damage + @attacker.strength_modifier)
+    @attacker.normal_damage_multiplier_for(defender) * (@attacker.base_damage(defender) + @attacker.strength_modifier)
   end
 
   def critical?

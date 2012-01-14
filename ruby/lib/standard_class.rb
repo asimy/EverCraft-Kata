@@ -15,7 +15,7 @@ class StandardClass
     1
   end
 
-  def critical_damage_multiplier
+  def critical_damage_multiplier(defender)
     2
   end
 
@@ -23,7 +23,7 @@ class StandardClass
     @character.strength_modifier
   end
 
-  def base_damage
+  def base_damage(defender)
     1
   end
 
