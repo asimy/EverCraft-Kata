@@ -68,8 +68,8 @@ class Character
     @alignment = value
   end
 
-  def attacking_with(defender, die_value)
-    Attack.new(self, defender, die_value)
+  def attacks(defender, die_value)
+    Attack.new(self, defender, die_value).invoke
   end
 
   def base_damage(defender)

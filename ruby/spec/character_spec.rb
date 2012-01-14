@@ -118,7 +118,7 @@ describe Character do
         c.strength = initial_attacker_strength
       end
     }
-    When { attacker.attacking_with(defender, attack_roll).invoke }
+    When { attacker.attacks(defender, attack_roll) }
 
     context "when it is unsuccessful" do
       Then { defender.hit_points.should == original_hits }
@@ -180,7 +180,7 @@ describe Character do
         Then { character.level.should == 1 }
 
         describe "no increase attack value" do
-          When(:attack) { character.attacking_with(defender, 10) }
+          When(:attack) { Attack.new(character, defender, 10) }
           Then { attack.attack_value.should == 10 }
         end
       end
@@ -195,7 +195,7 @@ describe Character do
         Then { character.level.should == 2 }
 
         describe "increase attack value" do
-          When(:attack) { character.attacking_with(defender, 10) }
+          When(:attack) { Attack.new(character, defender, 10) }
           Then { attack.attack_value.should == 11 }
         end
       end
@@ -235,17 +235,8 @@ describe Character do
     Given!(:attacker_xp) { attacker.experience }
     Given(:defender) { Character.new("Them") }
     it "gains 10 points experience"do
-      attacker.attacking_with(defender, 19).invoke
+      attacker.attacks(defender, 19)
       attacker.experience.should == attacker_xp + 10
-    end
-  end
-
-  describe "#attacking_with" do
-    Given(:defender) { Character.new("defender") }
-    it "returns an an attack object" do
-      attack = character.attacking_with(defender, 10)
-      attack.attack_value.should == 10
-      attack.normal_damage.should == 1
     end
   end
 end
