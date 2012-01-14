@@ -5,6 +5,21 @@ class Attack
     @die_value = die_value
   end
 
+  def invoke
+    if critical?
+      @defender.take_damage(critical_damage)
+      @attacker.gains_experience(10)
+    elsif successful?
+      @defender.take_damage(normal_damage)
+      @attacker.gains_experience(10)
+    end
+  end
+
+  def successful?
+    ac = choose_defenders_armor(@defender.base_armor_class, @defender.armor_class)
+    attack_value >= ac
+  end
+
   def attack_value
     @die_value + @attacker.attack_bonus(@defender)
   end
@@ -19,10 +34,6 @@ class Attack
 
   def critical?
     @die_value == 20
-  end
-
-  def was_successful
-    @attacker.had_a_successful_attack
   end
 
   def choose_defenders_armor(basic_armor, normal_armor)

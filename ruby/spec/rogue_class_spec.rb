@@ -20,7 +20,7 @@ describe RogueClass do
         c.dexterity = 12
       end
     }
-    When { defender.attacked_by(character.attacking_with(defender, 10)) }
+    When { character.attacking_with(defender, 10).invoke }
     Then { character.experience.should == 10 }
   end
 end

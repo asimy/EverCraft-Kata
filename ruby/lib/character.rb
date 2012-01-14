@@ -46,6 +46,10 @@ class Character
     @experience = (level-1) * 1000
   end
 
+  def base_armor_class
+    @base_armor_class
+  end
+
   def armor_class
     @base_armor_class + @class_strategy.armor_bonus
   end
@@ -68,17 +72,6 @@ class Character
     Attack.new(self, defender, die_value)
   end
 
-  # TODO: Move to attack?
-  def attacked_by(attack)
-    if attack.critical?
-      take_damage(attack.critical_damage)
-      attack.was_successful
-    elsif successful?(attack)
-      take_damage(attack.normal_damage)
-      attack.was_successful
-    end
-  end
-
   def base_damage(defender)
     @class_strategy.base_damage(defender)
   end
@@ -95,8 +88,12 @@ class Character
     @class_strategy.normal_damage_multiplier_for(defender)
   end
 
-  def had_a_successful_attack
-    @experience += 10
+  def take_damage(damage)
+    @total_damage += damage.but_at_least(1)
+  end
+
+  def gains_experience(xp)
+    @experience += xp
   end
 
   def attack_bonus(defender)
@@ -111,16 +108,6 @@ class Character
 
   def level_bonus
     @class_strategy.level_bonus
-  end
-
-  def take_damage(damage)
-    @total_damage += damage.but_at_least(1)
-  end
-
-  # TODO: Should this be here?
-  def successful?(attack)
-    ac = attack.choose_defenders_armor(@base_armor_class, armor_class)
-    attack.attack_value >= ac
   end
 
   def basic_health

@@ -118,7 +118,7 @@ describe Character do
         c.strength = initial_attacker_strength
       end
     }
-    When { defender.attacked_by(attacker.attacking_with(defender, attack_roll)) }
+    When { attacker.attacking_with(defender, attack_roll).invoke }
 
     context "when it is unsuccessful" do
       Then { defender.hit_points.should == original_hits }
@@ -232,9 +232,11 @@ describe Character do
 
   describe "gaining experience" do
     Given(:attacker) { character }
+    Given!(:attacker_xp) { attacker.experience }
+    Given(:defender) { Character.new("Them") }
     it "gains 10 points experience"do
-      attacker.had_a_successful_attack
-      attacker.experience.should == 10
+      attacker.attacking_with(defender, 19).invoke
+      attacker.experience.should == attacker_xp + 10
     end
   end
 

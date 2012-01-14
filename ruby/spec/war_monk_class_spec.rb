@@ -11,7 +11,7 @@ describe WarMonkClass do
   end
 
   describe "does 2 points of damage on successful attack" do
-    When { defender.attacked_by(character.attacking_with(defender, 10)) }
+    When { character.attacking_with(defender, 10).invoke }
     Then { defender.hit_points.should == original_hits - 3 }
   end
 
