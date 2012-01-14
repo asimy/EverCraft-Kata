@@ -12,7 +12,7 @@ class Character
       attr_accessor name
       define_method("#{name}_modifier") do
         value = send(name)
-        (value - 10) / 2
+        ((value - 10) / 2) + @race.modifier_for(name)
       end
     end
   end
@@ -32,16 +32,13 @@ class Character
     @intelligence = 10
     @charisma = 10
     @experience = 0
-    @class_strategy = :unspecified
     @alignment = :neutral
     klass = options.delete(:class) || StandardClass
     @class_strategy = klass.new(self)
     race = options.delete(:race) || HumanRace
     @race = race.new(self)
     fail ArgumentError, "No block allowed on initializer" if block_given?
-    options.each do |field, value|
-      set(field, value)
-    end
+    set options
   end
 
   def level
@@ -112,7 +109,13 @@ class Character
 
   private
 
-  def set(field, value)
+  def set(options={})
+    options.each do |field, value|
+      set_field field, value
+    end
+  end
+
+  def set_field(field, value)
     if field == :level
       set_level(value)
     elsif respond_to?("#{field}=")
