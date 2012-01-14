@@ -1,12 +1,10 @@
 class ElfRace < HumanRace
-  ABILITY_MODS = { dexterity: 1, constitution: -1 }
-
   def racial_name
     :elf
   end
 
-  def modifier_bonus_for(ability)
-    ABILITY_MODS[ability] || super
+  def ability_tweeks
+    { dexterity: 1, constitution: -1 }
   end
 
   def armor_bonus(attacker)

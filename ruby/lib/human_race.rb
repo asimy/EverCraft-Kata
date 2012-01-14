@@ -8,7 +8,11 @@ class HumanRace
   end
 
   def modifier_bonus_for(ability)
-    0
+    ability_tweeks[ability] || 0
+  end
+
+  def ability_tweeks
+    {}
   end
 
   def attack_bonus(defender)

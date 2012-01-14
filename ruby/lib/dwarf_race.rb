@@ -1,12 +1,10 @@
 class DwarfRace < HumanRace
-  ABILITY_MODS = { constitution: 1, charisma: -1 }
-
   def racial_name
     :dwarf
   end
 
-  def modifier_bonus_for(ability)
-    ABILITY_MODS[ability] || super
+  def ability_tweeks
+    { constitution: 1, charisma: -1 }
   end
 
   def hit_point_multiplier
