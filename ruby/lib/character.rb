@@ -47,7 +47,7 @@ class Character
   end
 
   def armor_class
-    @base_armor_class + dexterity_modifier
+    @base_armor_class + @class_strategy.armor_bonus
   end
 
   def hit_points
@@ -76,6 +76,10 @@ class Character
       take_damage(attack.normal_damage)
       attack.was_successful
     end
+  end
+
+  def base_damage
+    @class_strategy.base_damage
   end
 
   def dead?

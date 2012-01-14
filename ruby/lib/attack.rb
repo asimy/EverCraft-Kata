@@ -13,7 +13,7 @@ class Attack
   end
 
   def normal_damage
-    1 + @attacker.strength_modifier
+    @attacker.base_damage + @attacker.strength_modifier
   end
 
   def critical?

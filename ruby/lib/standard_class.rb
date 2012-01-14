@@ -19,7 +19,15 @@ class StandardClass
     @character.strength_modifier
   end
 
+  def base_damage
+    1
+  end
+
   def choose_defenders_armor(base_armor, normal_armor)
     normal_armor
+  end
+
+  def armor_bonus
+    @character.dexterity_modifier
   end
 end
