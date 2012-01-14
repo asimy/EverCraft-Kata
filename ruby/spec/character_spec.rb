@@ -117,42 +117,40 @@ describe Character do
 
   describe "gaining experience" do
     Given(:attacker) { character }
-    Given!(:attacker_xp) { attacker.experience }
+    Given!(:original_xp) { attacker.experience }
     Given(:defender) { Character.new("Them") }
-    it "gains 10 points experience"do
-      attacker.attacks(defender, 19)
-      attacker.experience.should == attacker_xp + 10
-    end
-  end
-
-  describe "setting values" do
-    Given(:character) { Character.new("Me") }
-    context "on setting abilities" do
-      When { character.set(:strength, 13) }
-      Then { character.strength.should == 13 }
-    end
-    context "on instance variables" do
-      When { character.set(:experience, 13) }
-      Then { character.experience.should == 13 }
-    end
-    context "on level" do
-      When { character.set(:level, 2) }
-      Then { character.level.should == 2 }
-      Then { character.experience.should == 1000 }
-    end
-    context "on something undefined " do
-      it "fails" do
-        lambda { character.set(:xyzzy, 20) }.should raise_error(ArgumentError)
-      end
-    end
+    When { attacker.attacks(defender, 19) }
+    Then { attacker.experience.should == original_xp + 10 }
   end
 
   describe "initializing values" do
-    Given(:character) {
-      Character.new("Me", :class_strategy => FighterClass, :strength => 12, :experience => 200)
-    }
-    Then { character.strength.should == 12 }
-    Then { character.experience.should == 200 }
-    Then { character.instance_eval { @class_strategy }.should be_kind_of(FighterClass) }
+    context "on setting abilities" do
+      Given(:character) { Character.new("Me", strength: 13) }
+      Then { character.strength.should == 13 }
+    end
+
+    context "on instance variables" do
+      Given(:character) { Character.new("Me", experience: 13) }
+      Then { character.experience.should == 13 }
+    end
+
+    context "on level" do
+      Given(:character) { Character.new("Me", level: 2) }
+      Then { character.level.should == 2 }
+      Then { character.experience.should == 1000 }
+    end
+
+    context "on class strategy" do
+      Given(:character) {
+        Character.new("Me", :class_strategy => FighterClass)
+      }
+      Then { character.hit_points.should == 10 }
+    end
+
+    context "on something undefined " do
+      it "fails" do
+        lambda { Character.new("me", :xyzzy, 20) }.should raise_error(ArgumentError)
+      end
+    end
   end
 end

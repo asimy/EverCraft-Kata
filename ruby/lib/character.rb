@@ -41,18 +41,6 @@ class Character
     end
   end
 
-  def set(field, value)
-    if field == :level
-      set_level(value)
-    elsif respond_to?("#{field}=")
-      send("#{field}=", value)
-    elsif ! instance_variable_get("@#{field}").nil?
-      instance_variable_set("@#{field}", value)
-    else
-      fail ArgumentError, "Unknown field '#{field}'"
-    end
-  end
-
   def level
     (experience / 1000) + 1
   end
@@ -120,6 +108,18 @@ class Character
   end
 
   private
+
+  def set(field, value)
+    if field == :level
+      set_level(value)
+    elsif respond_to?("#{field}=")
+      send("#{field}=", value)
+    elsif ! instance_variable_get("@#{field}").nil?
+      instance_variable_set("@#{field}", value)
+    else
+      fail ArgumentError, "Unknown field '#{field}'"
+    end
+  end
 
   def level_bonus
     @class_strategy.level_bonus
