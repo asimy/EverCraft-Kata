@@ -16,7 +16,7 @@ class Attack
   end
 
   def successful?
-    ac = choose_defenders_armor(@defender.base_armor_class, @defender.armor_class)
+    ac = choose_defenders_armor(@defender.base_armor_class, @defender.armor_class(@attacker))
     attack_value >= ac
   end
 
@@ -33,7 +33,7 @@ class Attack
   end
 
   def critical?
-    @die_value == 20
+    @attacker.critical?(@die_value)
   end
 
   def choose_defenders_armor(basic_armor, normal_armor)

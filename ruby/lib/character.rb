@@ -57,8 +57,8 @@ class Character
     @base_armor_class
   end
 
-  def armor_class
-    @base_armor_class + @class.armor_bonus + @race.armor_bonus
+  def armor_class(attacker)
+    @base_armor_class + @class.armor_bonus(attacker) + @race.armor_bonus(attacker)
   end
 
   def hit_points
@@ -101,6 +101,10 @@ class Character
 
   def gains_experience(xp)
     @experience += xp
+  end
+
+  def critical?(die_value)
+    die_value >= (20 - @race.critical_range_bonus)
   end
 
   def attack_bonus(defender)

@@ -7,7 +7,7 @@ class WarMonkClass < StandardClass
     3
   end
 
-  def armor_bonus
+  def armor_bonus(attacker)
     @character.dexterity_modifier +
       @character.wisdom_modifier
   end

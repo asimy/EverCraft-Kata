@@ -5,7 +5,7 @@ class OrcRace < HumanRace
     :orc
   end
 
-  def armor_bonus
+  def armor_bonus(attacker)
     2
   end
 

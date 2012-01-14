@@ -3,6 +3,8 @@ require 'orc_race'
 
 describe OrcRace do
   Given(:character) { Character.new("Me", race: OrcRace) }
+  Given(:attacker) { Character.new("Them") }
+
   Given(:base_modifier) { 0 }
   Given(:base_armor_class) { 10 }
 
@@ -13,5 +15,5 @@ describe OrcRace do
   Then { character.wisdom_modifier.should == base_modifier - 1 }
   Then { character.charisma_modifier.should == base_modifier - 1 }
 
- Then { character.armor_class.should == base_armor_class + 2 }
+  Then { character.armor_class(attacker).should == base_armor_class + 2 }
 end

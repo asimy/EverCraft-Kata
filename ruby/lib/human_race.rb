@@ -15,7 +15,7 @@ class HumanRace
     0
   end
 
-  def armor_bonus
+  def armor_bonus(attacker)
     0
   end
 
@@ -25,5 +25,9 @@ class HumanRace
 
   def hit_point_multiplier
     1
+  end
+
+  def critical_range_bonus
+    0
   end
 end

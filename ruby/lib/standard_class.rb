@@ -31,7 +31,7 @@ class StandardClass
     normal_armor
   end
 
-  def armor_bonus
+  def armor_bonus(attacker)
     @character.dexterity_modifier
   end
 end

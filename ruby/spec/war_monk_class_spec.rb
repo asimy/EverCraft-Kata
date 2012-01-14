@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe WarMonkClass do
   Given(:original_hits) { 5 }
-  Given(:character) { Character.new("Monk", class: WarMonkClass) }
+  Given(:character) { Character.new("Monk", :class => WarMonkClass) }
   Given(:defender) { Character.new("Defender") }
 
   describe "has 6 hit points per level" do
@@ -16,13 +16,14 @@ describe WarMonkClass do
   end
 
   describe "adds wisdom to armor class" do
+    Given(:attacker) { Character.new("attacker") }
     When { character.dexterity = 12 }
     When { character.wisdom = 12 }
     Then {
-      character.armor_class.should == (10 +
+      character.armor_class(attacker).should == (10 +
         character.dexterity_modifier +
         character.wisdom_modifier)
-      }
+    }
   end
 
   describe "attack roll is increased by 1 every 2nd and 3rd level" do

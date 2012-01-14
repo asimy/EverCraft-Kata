@@ -12,10 +12,12 @@ describe Character do
   end
 
   describe "default values" do
+    Given(:attacker) { Character.new("attacker") }
+
     Then { character.experience.should == 0 }
     Then { character.level.should == 1 }
     Then { character.alignment.should == :neutral }
-    Then { character.armor_class.should == 10 }
+    Then { character.armor_class(attacker).should == 10 }
     Then { character.hit_points.should == 5 }
   end
 
