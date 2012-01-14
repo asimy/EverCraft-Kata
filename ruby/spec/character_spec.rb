@@ -118,7 +118,7 @@ describe Character do
         c.strength = initial_attacker_strength
       end
     }
-    When { defender.attacked_by(attacker.attacking_with(attack_roll)) }
+    When { defender.attacked_by(attacker.attacking_with(defender, attack_roll)) }
 
     context "when it is unsuccessful" do
       Then { defender.hit_points.should == original_hits }
@@ -180,7 +180,7 @@ describe Character do
         Then { character.level.should == 1 }
 
         describe "no increase attack value" do
-          When(:attack) { character.attacking_with(10) }
+          When(:attack) { character.attacking_with(defender, 10) }
           Then { attack.attack_value(defender).should == 10 }
         end
       end
@@ -195,7 +195,7 @@ describe Character do
         Then { character.level.should == 2 }
 
         describe "increase attack value" do
-          When(:attack) { character.attacking_with(10) }
+          When(:attack) { character.attacking_with(defender, 10) }
           Then { attack.attack_value(defender).should == 11 }
         end
       end
@@ -241,7 +241,7 @@ describe Character do
   describe "#attacking_with" do
     Given(:defender) { Character.new("defender") }
     it "returns an an attack object" do
-      attack = character.attacking_with(10)
+      attack = character.attacking_with(defender, 10)
       attack.attack_value(defender).should == 10
       attack.normal_damage(defender).should == 1
     end

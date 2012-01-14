@@ -18,7 +18,7 @@ describe PaladinClass do
     Given(:base_damage) { 1 }
     context "when attacking a good guy" do
       Given(:defender) { Character.new("Good Guy") }
-      When(:attack) { character.attacking_with(10) }
+      When(:attack) { character.attacking_with(defender, 10) }
       Then { attack.attack_value(defender).should == 10 }
       Then { attack.normal_damage(defender).should == base_damage }
       Then { attack.critical_damage(defender).should == 2 * base_damage }
@@ -30,7 +30,7 @@ describe PaladinClass do
           c.alignment = :evil
         end
       }
-      When(:attack) { character.attacking_with(10) }
+      When(:attack) { character.attacking_with(defender, 10) }
       Then { attack.attack_value(defender).should == 12 }
       Then { attack.normal_damage(defender).should == base_damage + 2 }
       Then { attack.critical_damage(defender).should == 3 * (base_damage + 2) }
@@ -38,7 +38,7 @@ describe PaladinClass do
   end
 
   describe "attacks roll is increased by 1 for every level instead of every other level" do
-    When(:attack) { character.attacking_with(10) }
+    When(:attack) { character.attacking_with(defender, 10) }
 
     context "at level 1" do
       Then { attack.attack_value(defender).should == 10 }

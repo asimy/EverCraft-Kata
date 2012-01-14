@@ -5,7 +5,7 @@ describe RogueClass do
   Given(:defender) { Character.new("Them") }
 
   describe "critical damage" do
-    Given(:attack) { character.attacking_with(20) }
+    Given(:attack) { character.attacking_with(defender, 20) }
     Then { attack.critical_damage(defender).should == 3 }
   end
 
@@ -20,7 +20,7 @@ describe RogueClass do
         c.dexterity = 12
       end
     }
-    When { defender.attacked_by(character.attacking_with(10)) }
+    When { defender.attacked_by(character.attacking_with(defender, 10)) }
     Then { character.experience.should == 10 }
   end
 end

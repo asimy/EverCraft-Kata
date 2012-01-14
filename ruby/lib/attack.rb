@@ -1,6 +1,7 @@
 class Attack
-  def initialize(attacker, die_value)
+  def initialize(attacker, defender, die_value)
     @attacker = attacker
+    @defender = defender
     @die_value = die_value
   end
 

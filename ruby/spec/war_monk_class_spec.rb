@@ -11,7 +11,7 @@ describe WarMonkClass do
   end
 
   describe "does 2 points of damage on successful attack" do
-    When { defender.attacked_by(character.attacking_with(10)) }
+    When { defender.attacked_by(character.attacking_with(defender, 10)) }
     Then { defender.hit_points.should == original_hits - 3 }
   end
 
@@ -26,7 +26,7 @@ describe WarMonkClass do
   end
 
   describe "attack roll is increased by 1 every 2nd and 3rd level" do
-    When(:attack) { character.attacking_with(10) }
+    When(:attack) { character.attacking_with(defender, 10) }
 
     context "at level 1" do
       Then { attack.attack_value(defender).should == 10 }
