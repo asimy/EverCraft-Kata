@@ -18,3 +18,4 @@ require 'halfling_race'
 
 require 'bare_hands'
 require 'long_sword'
+require 'war_axe'
