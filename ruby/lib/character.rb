@@ -42,6 +42,10 @@ class Character
     set options
   end
 
+  def class_name
+    @class.name
+  end
+
   def race
     @race.racial_name
   end
@@ -93,7 +97,8 @@ class Character
   end
 
   def critical_damage_multiplier(defender)
-    @class.critical_damage_multiplier(defender)
+    @class.critical_damage_multiplier(defender) *
+      @weapon.critical_damage_multiplier(self, defender)
   end
 
   def normal_damage_multiplier_for(defender)
@@ -138,7 +143,7 @@ class Character
       send("#{field}=", value)
     elsif ! instance_variable_get("@#{field}").nil?
       instance_variable_set("@#{field}", value)
-    else
+     else
       fail ArgumentError, "Unknown field '#{field}'"
     end
   end

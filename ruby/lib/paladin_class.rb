@@ -1,6 +1,10 @@
 require 'standard_class'
 
 class PaladinClass < StandardClass
+  def name
+    :paladin
+  end
+
   def hits_per_level
     8
   end

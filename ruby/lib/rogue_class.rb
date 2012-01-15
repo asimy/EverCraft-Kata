@@ -1,4 +1,8 @@
 class RogueClass < StandardClass
+  def name
+    :rogue
+  end
+
   def critical_damage_multiplier(defender)
     3
   end

@@ -1,4 +1,8 @@
 class WarMonkClass < StandardClass
+  def name
+    :war_monk
+  end
+
   def hits_per_level
     6
   end

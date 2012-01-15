@@ -6,4 +6,8 @@ class WarAxe < BasicWeapon
   def damage_bonus(defender)
     2
   end
+
+  def critical_damage_multiplier(attacker, defender)
+    (attacker.class_name == :rogue) ? 4.0 / 3.0 : 3.0 / 2.0
+  end
 end

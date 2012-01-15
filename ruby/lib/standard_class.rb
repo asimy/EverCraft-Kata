@@ -3,6 +3,10 @@ class StandardClass
     @character = character
   end
 
+  def name
+    :standard
+  end
+
   def level_bonus
     @character.level/2
   end
