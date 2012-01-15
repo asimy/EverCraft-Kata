@@ -1,9 +1,9 @@
 class BasicWeapon
-  def damage_bonus(defender)
+  def damage_bonus(attacker, defender)
     0
   end
 
-  def attack_bonus(defender)
+  def attack_bonus(attacker, defender)
     0
   end
 

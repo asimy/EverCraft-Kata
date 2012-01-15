@@ -89,7 +89,9 @@ class Character
   end
 
   def base_damage(defender)
-    @class.base_damage(defender) + @race.damage_bonus(defender) + @weapon.damage_bonus(defender)
+    @class.base_damage(defender) +
+      @race.damage_bonus(defender) +
+      @weapon.damage_bonus(self, defender)
   end
 
   def dead?
@@ -121,7 +123,7 @@ class Character
     level_bonus +
       @class.attack_bonus(defender) +
       @race.attack_bonus(defender) +
-      @weapon.attack_bonus(defender)
+      @weapon.attack_bonus(self, defender)
   end
 
   def choose_defenders_armor(base_armor, normal_armor)

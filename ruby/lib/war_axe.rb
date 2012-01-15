@@ -1,9 +1,9 @@
 class WarAxe < BasicWeapon
-  def attack_bonus(defender)
+  def attack_bonus(attacker, defender)
     2
   end
 
-  def damage_bonus(defender)
+  def damage_bonus(attacker, defender)
     6
   end
 
