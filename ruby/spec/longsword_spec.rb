@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe LongSword do
-  Given(:longsword) { LongSword.new }
+describe Longsword do
+  Given(:longsword) { Longsword.new }
   Then { longsword.should_not be_nil }
 
   context "when attacking" do
