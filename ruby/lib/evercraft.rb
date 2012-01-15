@@ -16,6 +16,7 @@ require 'dwarf_race'
 require 'elf_race'
 require 'halfling_race'
 
+require 'basic_weapon'
 require 'bare_hands'
 require 'long_sword'
 require 'war_axe'

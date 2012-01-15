@@ -1,4 +1,4 @@
-class WarAxe
+class WarAxe < BasicWeapon
   def attack_bonus(defender)
     2
   end
