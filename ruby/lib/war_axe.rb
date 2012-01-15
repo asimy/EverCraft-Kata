@@ -4,7 +4,7 @@ class WarAxe < BasicWeapon
   end
 
   def damage_bonus(defender)
-    2
+    6
   end
 
   def critical_damage_multiplier(attacker, defender)
